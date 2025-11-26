@@ -86,3 +86,32 @@ This application allows an **Admin** to manage folders & files and generate **pu
 
 ## 🔑 Default Admin Credentials
 
+PORT=5000
+MONGO_URI=<your_mongodb_connection_string>
+JWT_SECRET=supersecret_jwt_key_123
+
+
+---
+
+## ⚙️ Backend Setup (Local)
+
+```bash
+cd backend
+npm install
+npm start
+
+Seed Admin:
+```
+POST /api/auth/seed-admin
+```
+### ⚙️ Frontend Setup (Local)
+cd frontend
+npm install
+npm start
+
+## 📌 API Endpoints Overview
+
+### Auth
+
+- POST /api/auth/login
+- POST /api/auth/seed-admin
