@@ -146,8 +146,8 @@ POST /api/auth/seed-admin
   
    ## 📄 Project Structure
 
-   ```
-   storageApp/
+```
+storageApp/
 │
 ├── backend/
 │   ├── config/
@@ -166,8 +166,8 @@ POST /api/auth/seed-admin
 │   └── styles.css
 │
 └── README.md
-```
 
+```
 ### 📌 Assignment Requirements Covered
 
 ✅ Admin authentication
