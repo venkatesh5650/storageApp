@@ -2,6 +2,7 @@ import File from "../models/File.js";
 import ShareLink from "../models/ShareLink.js";
 import crypto from "crypto";
 
+// Create a new file inside a folder
 export const createFile = async (req, res) => {
   const { name, folderId, url } = req.body;
 
@@ -15,6 +16,7 @@ export const createFile = async (req, res) => {
   res.status(201).json(file);
 };
 
+// Rename an existing file
 export const renameFile = async (req, res) => {
   const { id } = req.params;
   const { name } = req.body;
@@ -25,6 +27,7 @@ export const renameFile = async (req, res) => {
   res.json(file);
 };
 
+// Delete a file and its associated share links
 export const deleteFile = async (req, res) => {
   const { id } = req.params;
   await ShareLink.deleteMany({ file: id });
@@ -32,7 +35,7 @@ export const deleteFile = async (req, res) => {
   res.json({ message: "File deleted" });
 };
 
-// Generate file share link
+// Generate public share link for a file
 export const generateFileShareLink = async (req, res) => {
   const { id } = req.params;
 

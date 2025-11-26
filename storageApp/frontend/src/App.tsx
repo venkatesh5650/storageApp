@@ -1,23 +1,34 @@
 import React from "react";
-import { Navigate, Route, Routes, useLocation, useNavigate } from "react-router-dom";
+import {
+  Navigate,
+  Route,
+  Routes,
+  useLocation,
+  useNavigate,
+} from "react-router-dom";
 import LoginPage from "./pages/LoginPage";
 import DashboardPage from "./pages/DashboardPage";
 import FolderViewPage from "./pages/FolderViewPage";
 import PublicViewPage from "./pages/PublicViewPage";
 
+/* ✅ Protects private routes using JWT token */
 const PrivateRoute: React.FC<{ children: JSX.Element }> = ({ children }) => {
   const token = localStorage.getItem("token");
   const location = useLocation();
+
   if (!token) {
     return <Navigate to="/login" state={{ from: location }} replace />;
   }
+
   return children;
 };
 
+/* ✅ Common layout wrapper with header and logout */
 const AppShell: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const navigate = useNavigate();
   const token = localStorage.getItem("token");
 
+  // Handle logout and clear token
   const handleLogout = () => {
     localStorage.removeItem("token");
     navigate("/login");
@@ -35,16 +46,22 @@ const AppShell: React.FC<{ children: React.ReactNode }> = ({ children }) => {
           )}
         </div>
       </header>
+
       <main className="app-main">{children}</main>
     </div>
   );
 };
 
+/* ✅ Application routes */
 const App: React.FC = () => {
   return (
     <AppShell>
       <Routes>
+        {/* Public routes */}
         <Route path="/login" element={<LoginPage />} />
+        <Route path="/public/:shareId" element={<PublicViewPage />} />
+
+        {/* Protected routes */}
         <Route
           path="/dashboard"
           element={
@@ -53,6 +70,7 @@ const App: React.FC = () => {
             </PrivateRoute>
           }
         />
+
         <Route
           path="/folders/:id"
           element={
@@ -61,7 +79,8 @@ const App: React.FC = () => {
             </PrivateRoute>
           }
         />
-        <Route path="/public/:shareId" element={<PublicViewPage />} />
+
+        {/* Fallback route */}
         <Route path="*" element={<Navigate to="/login" replace />} />
       </Routes>
     </AppShell>

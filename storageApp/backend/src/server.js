@@ -8,21 +8,26 @@ import folderRoutes from "./routes/folderRoutes.js";
 import fileRoutes from "./routes/fileRoutes.js";
 import publicRoutes from "./routes/publicRoutes.js";
 
+// Load environment variables and connect to database
 dotenv.config();
 connectDB();
 
 const app = express();
+
+// Global middlewares
 app.use(cors());
 app.use(express.json());
 
+// Health check route
 app.get("/", (req, res) => res.send("Storage Platform Backend ✅"));
 
-// Routes
+// API routes
 app.use("/api/auth", authRoutes);
 app.use("/api/folders", folderRoutes);
 app.use("/api/files", fileRoutes);
 app.use("/api/public", publicRoutes);
 
+// Start server
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () =>
   console.log(`✅ Server running on http://localhost:${PORT}`)

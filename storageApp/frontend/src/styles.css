@@ -1,3 +1,4 @@
+/* ✅ Global base styling */
 body {
   margin: 0;
   font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
@@ -6,12 +7,14 @@ body {
   color: #e5e7eb;
 }
 
+/* ✅ Main app layout */
 .app-shell {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
 }
 
+/* ✅ Top navigation/header */
 .app-header {
   padding: 1rem 2rem;
   background: #020617;
@@ -26,6 +29,7 @@ body {
   font-weight: 600;
 }
 
+/* ✅ Main content container */
 .app-main {
   padding: 1.5rem 2rem;
   max-width: 960px;
@@ -33,6 +37,7 @@ body {
   margin: 0 auto;
 }
 
+/* ✅ Card UI wrapper */
 .card {
   background: #020617;
   border-radius: 0.75rem;
@@ -41,6 +46,7 @@ body {
   margin-bottom: 1.5rem;
 }
 
+/* ✅ Input fields */
 .input {
   width: 100%;
   padding: 0.5rem 0.75rem;
@@ -51,6 +57,7 @@ body {
   margin-bottom: 0.75rem;
 }
 
+/* ✅ Primary button */
 .button {
   padding: 0.5rem 1rem;
   border-radius: 0.5rem;
@@ -62,11 +69,13 @@ body {
   margin-right: 0.5rem;
 }
 
+/* ✅ Secondary button */
 .button.secondary {
   background: #111827;
   border: 1px solid #1f2937;
 }
 
+/* ✅ Danger action button */
 .button.danger {
   background: #b91c1c;
 }
@@ -76,12 +85,14 @@ body {
   cursor: not-allowed;
 }
 
+/* ✅ Links */
 .link {
   color: #60a5fa;
   cursor: pointer;
   text-decoration: none;
 }
 
+/* ✅ List layout */
 .list {
   list-style: none;
   padding: 0;
@@ -96,6 +107,7 @@ body {
   border-bottom: 1px solid #1f2937;
 }
 
+/* ✅ Small badge label */
 .badge {
   font-size: 0.75rem;
   padding: 0.15rem 0.5rem;
@@ -108,7 +120,7 @@ body {
    ✅ MOBILE RESPONSIVE SUPPORT
    ============================ */
 
-/* Tablets & small laptops */
+/* ✅ Tablets & small laptops */
 @media (max-width: 900px) {
   .app-main {
     padding: 1rem;

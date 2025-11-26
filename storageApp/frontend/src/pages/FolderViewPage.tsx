@@ -23,6 +23,8 @@ interface FolderResponse {
 const FolderViewPage: React.FC = () => {
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
+
+  // Local state for folder data and UI state
   const [data, setData] = useState<FolderResponse | null>(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -33,6 +35,7 @@ const FolderViewPage: React.FC = () => {
   );
   const [shareLink, setShareLink] = useState<string | null>(null);
 
+  // Fetch current folder, its sub-folders and files
   const fetchData = useCallback(async () => {
     if (!id) return;
     setLoading(true);
@@ -47,10 +50,12 @@ const FolderViewPage: React.FC = () => {
     }
   }, [id]);
 
+  // Reload when folder id changes
   useEffect(() => {
     fetchData();
   }, [fetchData]);
 
+  // Create a new sub-folder under the current folder
   const handleCreateSubFolder = async () => {
     if (!newFolderName.trim() || !id) return;
     try {
@@ -62,6 +67,7 @@ const FolderViewPage: React.FC = () => {
     }
   };
 
+  // Create a new file in the current folder
   const handleCreateFile = async () => {
     if (!newFileName.trim() || !id) return;
     try {
@@ -77,29 +83,34 @@ const FolderViewPage: React.FC = () => {
     }
   };
 
+  // Delete a child folder
   const handleDeleteFolder = async (folderId: string) => {
     if (!window.confirm("Delete this folder?")) return;
     await api.delete(`/folders/${folderId}`);
     fetchData();
   };
 
+  // Delete a file
   const handleDeleteFile = async (fileId: string) => {
     if (!window.confirm("Delete this file?")) return;
     await api.delete(`/files/${fileId}`);
     fetchData();
   };
 
+  // Generate share link for the current folder
   const handleGenerateFolderShare = async () => {
     if (!id) return;
     const res = await api.post(`/folders/${id}/share`);
     setShareLink(`${window.location.origin}/public/${res.data.shareId}`);
   };
 
+  // Generate share link for a specific file
   const handleGenerateFileShare = async (fileId: string) => {
     const res = await api.post(`/files/${fileId}/share`);
     setShareLink(`${window.location.origin}/public/${res.data.shareId}`);
   };
 
+  // Navigate up one level or back to dashboard
   const goUp = () => {
     if (data?.folder.parent) {
       navigate(`/folders/${data.folder.parent}`);

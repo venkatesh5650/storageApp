@@ -13,6 +13,7 @@ interface FileItem {
   url: string;
 }
 
+/* ✅ Public API response structure */
 interface PublicResponse {
   type: "folder" | "file";
   folder?: Folder;
@@ -27,11 +28,14 @@ const PublicViewPage: React.FC = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
+  /* ✅ Fetch shared public resource */
   useEffect(() => {
     const load = async () => {
       if (!shareId) return;
+
       setLoading(true);
       setError(null);
+
       try {
         const res = await api.get<PublicResponse>(`/public/${shareId}`);
         setData(res.data);
@@ -41,6 +45,7 @@ const PublicViewPage: React.FC = () => {
         setLoading(false);
       }
     };
+
     load();
   }, [shareId]);
 
@@ -52,6 +57,7 @@ const PublicViewPage: React.FC = () => {
       {loading && <p>Loading...</p>}
       {error && <p style={{ color: "#f97373" }}>{error}</p>}
 
+      {/* ✅ File public view */}
       {data?.type === "file" && data.file && (
         <div>
           <h3>File: {data.file.name}</h3>
@@ -66,9 +72,11 @@ const PublicViewPage: React.FC = () => {
         </div>
       )}
 
+      {/* ✅ Folder public view */}
       {data?.type === "folder" && data.folder && (
         <div>
           <h3>Folder: {data.folder.name}</h3>
+
           <h4>Files</h4>
           <ul className="list">
             {data.files && data.files.length > 0 ? (
@@ -90,6 +98,7 @@ const PublicViewPage: React.FC = () => {
             )}
           </ul>
 
+          {/* ✅ Display sub-folders if available */}
           {data.subFolders && data.subFolders.length > 0 && (
             <>
               <h4>Sub-folders</h4>

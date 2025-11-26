@@ -9,11 +9,13 @@ interface Folder {
 }
 
 const DashboardPage: React.FC = () => {
+  // State for root folders and UI status
   const [folders, setFolders] = useState<Folder[]>([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [newFolderName, setNewFolderName] = useState("");
 
+  // Fetch all root folders
   const fetchFolders = async () => {
     setLoading(true);
     setError(null);
@@ -27,10 +29,12 @@ const DashboardPage: React.FC = () => {
     }
   };
 
+  // Load folders on initial render
   useEffect(() => {
     fetchFolders();
   }, []);
 
+  // Create a new root folder
   const handleCreateFolder = async () => {
     if (!newFolderName.trim()) return;
     try {
@@ -42,7 +46,7 @@ const DashboardPage: React.FC = () => {
     }
   };
 
-  // ✅✅ DELETE ROOT FOLDER FUNCTION
+  // Delete a root folder with confirmation
   const handleDeleteFolder = async (folderId: string) => {
     const confirmDelete = window.confirm(
       "Are you sure you want to delete this root folder and all its contents?"
@@ -97,7 +101,7 @@ const DashboardPage: React.FC = () => {
                 Open
               </Link>
 
-              {/* ✅ DELETE BUTTON */}
+              {/* Delete root folder */}
               <button
                 className="button danger"
                 onClick={() => handleDeleteFolder(folder._id)}

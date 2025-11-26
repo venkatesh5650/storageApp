@@ -3,19 +3,21 @@ import { useNavigate } from "react-router-dom";
 import api from "../api/client";
 
 const LoginPage: React.FC = () => {
+  // Local state for form inputs and UI status
   const [email, setEmail] = useState("admin@company.com");
   const [password, setPassword] = useState("Admin@123");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const navigate = useNavigate();
 
+  // Handle login form submit
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setError(null);
     setLoading(true);
     try {
       const res = await api.post("/auth/login", { email, password });
-      localStorage.setItem("token", res.data.token);
+      localStorage.setItem("token", res.data.token); // Store JWT token
       navigate("/dashboard");
     } catch (err: any) {
       setError(err?.response?.data?.message || "Login failed");
@@ -30,6 +32,7 @@ const LoginPage: React.FC = () => {
       <p style={{ fontSize: "0.9rem", color: "#9ca3af" }}>
         Use the seeded admin credentials or your own.
       </p>
+
       <form onSubmit={handleSubmit}>
         <input
           className="input"
@@ -38,6 +41,7 @@ const LoginPage: React.FC = () => {
           value={email}
           onChange={(e) => setEmail(e.target.value)}
         />
+
         <input
           className="input"
           type="password"
@@ -45,9 +49,11 @@ const LoginPage: React.FC = () => {
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
+
         {error && (
           <p style={{ color: "#f97373", marginBottom: "0.75rem" }}>{error}</p>
         )}
+
         <button className="button" type="submit" disabled={loading}>
           {loading ? "Logging in..." : "Login"}
         </button>
