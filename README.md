@@ -103,7 +103,7 @@ npm start
 Seed Admin:
 ```
 POST /api/auth/seed-admin
-```
+
 ### ⚙️ Frontend Setup (Local)
 cd frontend
 npm install
