@@ -186,3 +186,25 @@ storageApp/
 - Name: Venkatesh Karthan
 - Role: Full Stack Developer (MERN)
 - Project Type: Assignment / Portfolio Project
+
+---
+
+## 🖼️ Application Screenshots
+
+> Below are the key screens of the Storage Platform application.
+
+### 🔐 Admin Login
+![Login Page](./screenshots/LoginPage.png)
+
+### 📊 Dashboard – Root Folders
+![Dashboard](./screenshots/DashboardPage.png)
+
+### 📁 Nested Folder View
+![Nested Folder View](./screenshots/FolderPage.png)
+
+
+---
+
+
+
+
