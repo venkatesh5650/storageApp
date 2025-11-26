@@ -105,9 +105,9 @@ Seed Admin:
 POST /api/auth/seed-admin
 
 ### ⚙️ Frontend Setup (Local)
-cd frontend
-npm install
-npm start
+- cd frontend
+- npm install
+- npm start
 
 ## 📌 API Endpoints Overview
 
@@ -115,3 +115,74 @@ npm start
 
 - POST /api/auth/login
 - POST /api/auth/seed-admin
+
+  ### Folders
+   - GET /api/folders/root
+   - GET /api/folders/:id
+   - POST /api/folders
+   - PATCH /api/folders/:id
+   - DELETE /api/folders/:id
+   - POST /api/folders/:id/share
+   - PATCH /api/folders/share/:shareId/revoke
+ 
+  ### Files
+
+ - POST /api/files
+ - PATCH /api/files/:id
+ - DELETE /api/files/:id
+ - POST /api/files/:id/share
+
+   ### Public
+
+   - GET /api/public/:shareId
+  
+   ### ✅ Security Features
+
+   - JWT Authentication
+   - Password hashing with bcrypt
+   - Protected API routes
+   - Token-based access control
+   - Public routes strictly read-only
+  
+   ## 📄 Project Structure
+
+   ```
+   storageApp/
+│
+├── backend/
+│   ├── config/
+│   ├── controllers/
+│   ├── middleware/
+│   ├── models/
+│   ├── routes/
+│   ├── server.js
+│
+├── frontend/
+│   ├── src/
+│   │   ├── api/
+│   │   ├── pages/
+│   │   ├── App.tsx
+│   │   ├── index.tsx
+│   └── styles.css
+│
+└── README.md
+```
+
+### 📌 Assignment Requirements Covered
+
+✅ Admin authentication
+✅ Dashboard with root folders
+✅ Sub-folder navigation
+✅ Nested folder structure
+✅ File operations
+✅ Public share view
+✅ Backend APIs
+✅ MongoDB database
+✅ Responsive UI
+✅ Proper error handling
+
+### 🧑‍💻 Developer
+
+Name: Venkatesh Karthan
+Role: Full Stack Developer (MERN)
+Project Type: Assignment / Portfolio Project
