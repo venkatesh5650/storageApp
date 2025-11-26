@@ -170,16 +170,16 @@ storageApp/
 ```
 ### 📌 Assignment Requirements Covered
 
-✅ Admin authentication
-✅ Dashboard with root folders
-✅ Sub-folder navigation
-✅ Nested folder structure
-✅ File operations
-✅ Public share view
-✅ Backend APIs
-✅ MongoDB database
-✅ Responsive UI
-✅ Proper error handling
+- ✅ Admin authentication
+- ✅ Dashboard with root folders
+- ✅ Sub-folder navigation
+- ✅ Nested folder structure
+- ✅ File operations
+- ✅ Public share view
+- ✅ Backend APIs
+- ✅ MongoDB database
+- ✅ Responsive UI
+- ✅ Proper error handling
 
 ### 🧑‍💻 Developer
 
