@@ -197,10 +197,10 @@ storageApp/
 ![Login Page](./storageApp/screenshots/LoginPage.png)
 
 ### 📊 Dashboard – Root Folders
-![Dashboard](./screenshots/DashboardPage.png)
+![Dashboard](./storageApp/screenshots/DashboardPage.png)
 
 ### 📁 Nested Folder View
-![Nested Folder View](./screenshots/FolderPage.png)
+![Nested Folder View](./storageApp/screenshots/FolderPage.png)
 
 
 ---
