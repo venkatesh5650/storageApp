@@ -194,7 +194,7 @@ storageApp/
 > Below are the key screens of the Storage Platform application.
 
 ### 🔐 Admin Login
-![Login Page](../screenshots/LoginPage.png)
+![Login Page](../../screenshots/LoginPage.png)
 
 ### 📊 Dashboard – Root Folders
 ![Dashboard](./screenshots/DashboardPage.png)
