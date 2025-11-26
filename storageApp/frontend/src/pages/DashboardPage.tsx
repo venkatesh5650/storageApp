@@ -42,6 +42,24 @@ const DashboardPage: React.FC = () => {
     }
   };
 
+  // ✅✅ DELETE ROOT FOLDER FUNCTION
+  const handleDeleteFolder = async (folderId: string) => {
+    const confirmDelete = window.confirm(
+      "Are you sure you want to delete this root folder and all its contents?"
+    );
+
+    if (!confirmDelete) return;
+
+    try {
+      await api.delete(`/folders/${folderId}`);
+      alert("Root folder deleted successfully");
+      fetchFolders();
+    } catch (err) {
+      alert("Failed to delete folder");
+      console.error(err);
+    }
+  };
+
   return (
     <div className="card">
       <h2>Dashboard / Root Folders</h2>
@@ -73,9 +91,20 @@ const DashboardPage: React.FC = () => {
                 Created: {new Date(folder.createdAt).toLocaleString()}
               </div>
             </div>
-            <Link className="link" to={`/folders/${folder._id}`}>
-              Open
-            </Link>
+
+            <div style={{ display: "flex", gap: "0.5rem" }}>
+              <Link className="link" to={`/folders/${folder._id}`}>
+                Open
+              </Link>
+
+              {/* ✅ DELETE BUTTON */}
+              <button
+                className="button danger"
+                onClick={() => handleDeleteFolder(folder._id)}
+              >
+                Delete
+              </button>
+            </div>
           </li>
         ))}
       </ul>
