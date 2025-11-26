@@ -183,6 +183,6 @@ storageApp/
 
 ### 🧑‍💻 Developer
 
-Name: Venkatesh Karthan
-Role: Full Stack Developer (MERN)
-Project Type: Assignment / Portfolio Project
+- Name: Venkatesh Karthan
+- Role: Full Stack Developer (MERN)
+- Project Type: Assignment / Portfolio Project
