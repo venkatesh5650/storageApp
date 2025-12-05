@@ -15,7 +15,16 @@ connectDB();
 const app = express();
 
 // Global middlewares
-app.use(cors());
+app.use(
+  cors({
+    origin: "https://storage-app-ashen.vercel.app", // your frontend
+    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+    allowedHeaders: ["Content-Type", "Authorization"],
+    credentials: true,
+  })
+);
+app.options("*", cors());
+
 app.use(express.json());
 
 // Health check route
