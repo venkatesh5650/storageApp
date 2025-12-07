@@ -2,23 +2,49 @@ import ShareLink from "../models/ShareLink.js";
 import Folder from "../models/Folder.js";
 import File from "../models/File.js";
 
-// Fetch public resource (file or folder) using share link
 export const getPublicResource = async (req, res) => {
-  const { shareId } = req.params;
+  try {
+    const { shareId } = req.params;
 
-  // Validate active share link
-  const link = await ShareLink.findOne({ shareId, isActive: true });
-  if (!link) return res.status(404).json({ message: "Invalid link" });
+    const link = await ShareLink.findOne({ shareId, isActive: true });
+    if (!link) {
+      return res.status(404).json({ message: "Invalid or expired link" });
+    }
 
-  // Return shared file
-  if (link.type === "file") {
-    const file = await File.findById(link.file);
-    return res.json(file);
-  }
+    // ✅ PUBLIC FILE VIEW
+    if (link.type === "file") {
+      const file = await File.findById(link.file);
+      if (!file) {
+        return res.status(404).json({ message: "File not found" });
+      }
 
-  // Return shared folder
-  if (link.type === "folder") {
-    const folder = await Folder.findById(link.folder);
-    return res.json(folder);
+      return res.json({
+        type: "file",
+        file
+      });
+    }
+
+    // ✅ PUBLIC FOLDER VIEW
+    if (link.type === "folder") {
+      const folder = await Folder.findById(link.folder);
+      if (!folder) {
+        return res.status(404).json({ message: "Folder not found" });
+      }
+
+      const files = await File.find({ parentFolder: folder._id });
+      const subFolders = await Folder.find({ parent: folder._id });
+
+      return res.json({
+        type: "folder",
+        folder,
+        files,
+        subFolders
+      });
+    }
+
+    res.status(400).json({ message: "Invalid share type" });
+  } catch (error) {
+    console.error("Public share error:", error);
+    res.status(500).json({ message: "Server error" });
   }
 };
