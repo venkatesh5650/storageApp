@@ -38,7 +38,7 @@ const PublicViewPage: React.FC = () => {
       setError(null);
 
       try {
-        const res = await api.get<PublicResponse>(`/public/${shareId}`);
+        const res = await publicApi.get<PublicResponse>(`/public/${shareId}`);
         setData(res.data);
       } catch (err: any) {
         setError(err?.response?.data?.message || "Link invalid or revoked");
