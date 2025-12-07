@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import api from "../api/client";
+import publicApi from "../api/publicApi";
+
 
 interface Folder {
   _id: string;
